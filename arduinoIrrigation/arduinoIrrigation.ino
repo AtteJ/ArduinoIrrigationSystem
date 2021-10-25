@@ -1,7 +1,7 @@
 const int RELAY_PIN = A5;
 const int SENSOR_PIN = A4;
 
-const int MOISTURE_LIMIT = 300;
+const int MOISTURE_LIMIT = 600;
 const int WATERING_TIME = 1500;
 
 float OUTPUT_VALUE;
@@ -24,16 +24,15 @@ void loop()
 
 
 float get_moisture() {
+  float SENSOR_READ = 0;
   for (int i = 0; i <= 100; i++)
   {
-    OUTPUT_VALUE = OUTPUT_VALUE + analogRead(SENSOR_PIN);  // Reads from the soil moisture sensor
+    SENSOR_READ = SENSOR_READ + analogRead(SENSOR_PIN);  // Reads from the soil moisture sensor
     delay(1);
   }
-  
-  OUTPUT_VALUE = OUTPUT_VALUE / 100;
-  float OUTPUT_PERCENT = OUTPUT_VALUE / 1024 * 100; // Converts output to percents
+  SENSOR_READ = SENSOR_READ / 100;
 
-  return OUTPUT_VALUE;
+  return SENSOR_READ;
 }
 
 
